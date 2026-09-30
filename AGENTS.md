@@ -8,3 +8,7 @@
 > Commits you push to the connected branch sync back to Lovable and show up in
 > the editor, so keep the branch in a working state.
 <!-- LOVABLE:END -->
+
+## Architecture decisions
+
+- Keep this single-product storefront as one route, using local public assets for the cloned source and CDN pointers for user-uploaded media.
