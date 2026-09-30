@@ -1,19 +1,19 @@
 {
   "source": "https://github.com/lorenamarcondesalencastro-max/magic-clone-craft-98.git",
   "capabilities": [
-    {"capability":"code","source":"GitHub repository","outcome":"migrate","status":"in_progress","next_action":"Copy inspected source into the Lovable project"},
+    {"capability":"code","source":"GitHub repository","outcome":"migrate","status":"migrated","next_action":"Verify preview"},
     {"capability":"schema","source":"inspection","outcome":"absent","status":"verified","next_action":"none"},
     {"capability":"records","source":"inspection","outcome":"absent","status":"verified","next_action":"none"},
     {"capability":"auth identities","source":"inspection","outcome":"absent","status":"verified","next_action":"none"},
     {"capability":"authorization","source":"inspection","outcome":"absent","status":"verified","next_action":"none"},
-    {"capability":"uploaded file bytes","source":"repository public assets and Lovable asset pointers","outcome":"migrate","status":"in_progress","next_action":"Verify all visual media in preview"},
-    {"capability":"external providers","source":"checkout links and embedded Instagram/YouTube media","outcome":"preserve","status":"in_progress","next_action":"Verify links and embeds"},
+    {"capability":"uploaded file bytes","source":"repository public assets and Lovable asset pointers","outcome":"migrate","status":"migrated","next_action":"Verify all visual media in preview"},
+    {"capability":"external providers","source":"checkout links and embedded Instagram/YouTube media","outcome":"preserve","status":"migrated","next_action":"Verify links and embeds"},
     {"capability":"public endpoints","source":"inspection","outcome":"absent","status":"verified","next_action":"none"},
     {"capability":"callbacks","source":"inspection","outcome":"absent","status":"verified","next_action":"none"},
     {"capability":"webhooks","source":"inspection","outcome":"absent","status":"verified","next_action":"none"},
     {"capability":"schedules","source":"inspection","outcome":"absent","status":"verified","next_action":"none"},
     {"capability":"secrets","source":"inspection","outcome":"absent","status":"verified","next_action":"none"},
-    {"capability":"cutover","source":"GitHub repository","outcome":"replace current starter","status":"in_progress","next_action":"Verify preview"},
+    {"capability":"cutover","source":"GitHub repository","outcome":"replace current starter","status":"migrated","next_action":"Verify preview"},
     {"capability":"verification","source":"Lovable preview","outcome":"verify","status":"pending","next_action":"Test desktop and mobile experience"}
   ]
 }
