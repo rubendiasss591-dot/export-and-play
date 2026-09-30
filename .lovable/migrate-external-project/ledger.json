@@ -47,8 +47,8 @@
       "capability": "external providers",
       "source": "checkout links and embedded Instagram/YouTube media",
       "outcome": "preserve",
-      "status": "migrated",
-      "next_action": "Verify links and embeds"
+      "status": "verified",
+      "next_action": "none"
     },
     {
       "capability": "public endpoints",
@@ -89,15 +89,15 @@
       "capability": "cutover",
       "source": "GitHub repository",
       "outcome": "replace current starter",
-      "status": "migrated",
-      "next_action": "Verify preview"
+      "status": "verified",
+      "next_action": "none"
     },
     {
       "capability": "verification",
       "source": "Lovable preview",
       "outcome": "verify",
-      "status": "pending",
-      "next_action": "Test desktop and mobile experience"
+      "status": "verified",
+      "next_action": "none"
     }
   ]
 }
