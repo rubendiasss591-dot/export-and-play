@@ -30,7 +30,6 @@ import familiaImage from "@/assets/paleta-familia.webp.asset.json";
 import urbanImage from "@/assets/paleta-urban.webp.asset.json";
 
 const META_PIXEL_ID = "1429266975807753";
-const META_OPT_OUT_KEY = "serena_meta_ads_opt_out";
 
 const metaPixelScript = String.raw`
 !function(){
@@ -295,37 +294,12 @@ function ProductDetails({ palette, setPalette }: { palette: PaletteName; setPale
 
 function Index() {
   const [palette, setPalette] = useState<PaletteName>("Elegance");
-  const [trackingDisabled, setTrackingDisabled] = useState(false);
   const checkout = palettes[palette].checkout;
   const assuranceItems: Array<[LucideIcon, string, string]> = [
     [Truck, "Envio rápido", "para todo Brasil"],
     [ShieldCheck, "Compra segura", "dados protegidos"],
     [PackageCheck, "7 dias", "para experimentar"],
   ];
-
-  useEffect(() => {
-    try {
-      setTrackingDisabled(
-        window.localStorage.getItem(META_OPT_OUT_KEY) === "true" ||
-          (navigator as Navigator & { globalPrivacyControl?: boolean }).globalPrivacyControl === true,
-      );
-    } catch {
-      setTrackingDisabled(true);
-    }
-  }, []);
-
-  const disableAdTracking = () => {
-    try {
-      window.localStorage.setItem(META_OPT_OUT_KEY, "true");
-      document.cookie = "_fbp=; Max-Age=0; path=/; SameSite=Lax";
-      document.cookie = "_fbc=; Max-Age=0; path=/; SameSite=Lax";
-      const pixelWindow = window as typeof window & { fbq?: (...args: string[]) => void };
-      pixelWindow.fbq?.("consent", "revoke");
-    } finally {
-      setTrackingDisabled(true);
-      window.location.reload();
-    }
-  };
 
   return (
     <main className="min-h-screen overflow-hidden bg-background text-foreground">
