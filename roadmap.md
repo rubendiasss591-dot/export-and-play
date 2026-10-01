@@ -7,3 +7,4 @@
 - [x] Validar carregamento e interações principais
 - [x] Refinar oferta, paletas, mídia, pagamentos e elementos destacados
 - [x] Instalar o Meta Pixel com bloqueio regional, opt-out e política de privacidade
+- [ ] Posicionar o Meta Pixel no início do cabeçalho e configurar PageView, InitiateCheckout e Purchase corretamente
