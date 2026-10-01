@@ -30,7 +30,6 @@ import familiaImage from "@/assets/paleta-familia.webp.asset.json";
 import urbanImage from "@/assets/paleta-urban.webp.asset.json";
 
 const META_PIXEL_ID = "1429266975807753";
-const META_OPT_OUT_KEY = "serena_meta_ads_opt_out";
 
 const metaPixelScript = String.raw`
 !function(){
@@ -295,37 +294,12 @@ function ProductDetails({ palette, setPalette }: { palette: PaletteName; setPale
 
 function Index() {
   const [palette, setPalette] = useState<PaletteName>("Elegance");
-  const [trackingDisabled, setTrackingDisabled] = useState(false);
   const checkout = palettes[palette].checkout;
   const assuranceItems: Array<[LucideIcon, string, string]> = [
     [Truck, "Envio rápido", "para todo Brasil"],
     [ShieldCheck, "Compra segura", "dados protegidos"],
     [PackageCheck, "7 dias", "para experimentar"],
   ];
-
-  useEffect(() => {
-    try {
-      setTrackingDisabled(
-        window.localStorage.getItem(META_OPT_OUT_KEY) === "true" ||
-          (navigator as Navigator & { globalPrivacyControl?: boolean }).globalPrivacyControl === true,
-      );
-    } catch {
-      setTrackingDisabled(true);
-    }
-  }, []);
-
-  const disableAdTracking = () => {
-    try {
-      window.localStorage.setItem(META_OPT_OUT_KEY, "true");
-      document.cookie = "_fbp=; Max-Age=0; path=/; SameSite=Lax";
-      document.cookie = "_fbc=; Max-Age=0; path=/; SameSite=Lax";
-      const pixelWindow = window as typeof window & { fbq?: (...args: string[]) => void };
-      pixelWindow.fbq?.("consent", "revoke");
-    } finally {
-      setTrackingDisabled(true);
-      window.location.reload();
-    }
-  };
 
   return (
     <main className="min-h-screen overflow-hidden bg-background text-foreground">
@@ -405,25 +379,6 @@ function Index() {
       <section className="bg-final py-16 text-final-foreground">
         <div className="mx-auto max-w-2xl px-5 text-center"><p className="text-[11px] font-extrabold uppercase tracking-[0.18em] text-final-muted">Oferta especial</p><h2 className="mt-3 text-3xl font-extrabold sm:text-4xl">Renove seus banhos com conforto cinco estrelas</h2><p className="mt-4 text-sm text-final-muted">Aproveite a condição Compre 10, Ganhe 10 por apenas R$ 59,97.</p><div className="mx-auto mt-7 max-w-md"><BuyButton checkout={checkout} /></div></div>
       </section>
-      <footer id="politica-de-privacidade" className="border-t border-border bg-card px-5 pb-24 pt-10 sm:pb-10">
-        <div className="page-shell max-w-2xl text-xs leading-5 text-muted-foreground">
-          <h2 className="text-sm font-bold text-foreground">Política de Privacidade</h2>
-          <p className="mt-3">
-            Quando permitido, usamos o Pixel da Meta para medir visitas e melhorar anúncios. A Meta Platforms pode receber dados do navegador e dispositivo, identificadores de anúncios, páginas visitadas e interações para medição e otimização publicitária.
-          </p>
-          <p className="mt-2">
-            Em regiões que exigem consentimento, ou quando a localização não pode ser confirmada, o Pixel fica bloqueado. Também respeitamos o sinal de Controle Global de Privacidade do navegador.
-          </p>
-          <div className="mt-4 flex flex-wrap items-center gap-3">
-            <Button type="button" variant="outline" size="sm" onClick={disableAdTracking} disabled={trackingDisabled}>
-              {trackingDisabled ? "Medição de anúncios desativada" : "Desativar medição de anúncios"}
-            </Button>
-            <a className="font-semibold text-primary underline underline-offset-4" href="https://www.facebook.com/adpreferences/ad_settings" target="_blank" rel="noreferrer">
-              Preferências de anúncios da Meta
-            </a>
-          </div>
-        </div>
-      </footer>
       <div className="fixed inset-x-0 bottom-0 z-40 border-t border-border bg-card/95 p-3 backdrop-blur sm:hidden">
         <BuyButton checkout={checkout} />
       </div>
