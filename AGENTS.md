@@ -12,3 +12,4 @@
 ## Architecture decisions
 
 - Keep this single-product storefront as one route, using local public assets for the cloned source and CDN pointers for user-uploaded media.
+- Gate Meta Pixel loading by country, Global Privacy Control, and a persistent local opt-out so ad measurement respects the no-banner privacy route.
