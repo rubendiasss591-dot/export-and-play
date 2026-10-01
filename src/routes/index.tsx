@@ -34,7 +34,7 @@ const META_OPT_OUT_KEY = "serena_meta_ads_opt_out";
 
 const metaPixelScript = String.raw`
 !function(){
-  var pixelId='1429266975807753';
+  var pixelId='${META_PIXEL_ID}';
   var optOutKey='serena_meta_ads_opt_out';
   var regionKey='serena_visitor_region';
   var consentRegions=new Set(['AT','BE','BG','BR','CA','CH','CY','CZ','DE','DK','EE','ES','FI','FR','GB','GR','HR','HU','IE','IS','IT','LI','LT','LU','LV','MT','NL','NO','PL','PT','RO','SE','SI','SK']);
@@ -307,7 +307,7 @@ function Index() {
     try {
       setTrackingDisabled(
         window.localStorage.getItem(META_OPT_OUT_KEY) === "true" ||
-          navigator.globalPrivacyControl === true,
+          (navigator as Navigator & { globalPrivacyControl?: boolean }).globalPrivacyControl === true,
       );
     } catch {
       setTrackingDisabled(true);
