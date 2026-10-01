@@ -6,3 +6,4 @@
 - [x] Ajustar desktop e celular
 - [x] Validar carregamento e interações principais
 - [x] Refinar oferta, paletas, mídia, pagamentos e elementos destacados
+- [x] Instalar o Meta Pixel com bloqueio regional, opt-out e política de privacidade
