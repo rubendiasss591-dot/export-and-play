@@ -14,6 +14,8 @@ import { useEffect, type ReactNode } from "react";
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { metaPixelScript } from "../lib/meta-pixel";
+import { utmScript } from "../lib/utm-script";
+
 
 function NotFoundComponent() {
   return (
@@ -98,7 +100,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Montserrat:wght@400;500;600;700;800&display=swap" },
       { rel: "icon", href: "/favicon.png", type: "image/png" },
     ],
-    scripts: [{ type: "text/javascript", children: metaPixelScript }],
+    scripts: [
+      { type: "text/javascript", children: metaPixelScript },
+      { type: "text/javascript", children: utmScript },
+    ],
   }),
   shellComponent: RootShell,
   component: RootComponent,
