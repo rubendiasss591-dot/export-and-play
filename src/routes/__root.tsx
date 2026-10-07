@@ -14,7 +14,7 @@ import { useEffect, type ReactNode } from "react";
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { metaPixelScript } from "../lib/meta-pixel";
-import { utmScript } from "../lib/utm-script";
+import { utmScript, utmScript2 } from "../lib/utm-script";
 
 
 function NotFoundComponent() {
@@ -103,6 +103,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     scripts: [
       { type: "text/javascript", children: metaPixelScript },
       { type: "text/javascript", children: utmScript },
+      { type: "text/javascript", children: utmScript2 },
     ],
   }),
   shellComponent: RootShell,
