@@ -90,6 +90,9 @@
   --final: oklch(0.22 0.055 158);
   --final-foreground: oklch(0.98 0.008 90);
   --final-muted: oklch(0.85 0.02 151);
+  --player: oklch(0.12 0.008 158);
+  --player-foreground: oklch(0.98 0.008 90);
+  --player-muted: oklch(0.78 0.02 151);
   --shadow-product: 0 12px 32px color-mix(in oklab, var(--foreground) 12%, transparent);
   --shadow-buy: 0 8px 20px color-mix(in oklab, var(--buy) 30%, transparent);
 }

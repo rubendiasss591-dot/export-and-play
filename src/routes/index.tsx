@@ -209,6 +209,74 @@ function Gallery({ palette }: { palette: PaletteName }) {
   );
 }
 
+function NossaLojaPlayer() {
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [mutedStart, setMutedStart] = useState(false);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+    video.play().catch(() => {
+      video.muted = true;
+      setMutedStart(true);
+      video.play().catch(() => {});
+    });
+  }, []);
+
+  const togglePlay = () => {
+    const video = videoRef.current;
+    if (!video) return;
+    if (video.paused) {
+      video.muted = false;
+      setMutedStart(false);
+      void video.play();
+    } else {
+      video.pause();
+    }
+  };
+
+  return (
+    <div className="rounded-lg bg-player p-4 text-player-foreground shadow-product sm:col-span-2 lg:col-span-4">
+      <p className="text-center font-serif text-2xl tracking-[0.3em]">NOSSA LOJA</p>
+      <p className="mt-1 text-center text-xs text-player-muted">Você tem 30 dias para trocas ou devoluções.</p>
+      <div className="relative mt-4 overflow-hidden rounded-md bg-player">
+        <video
+          ref={videoRef}
+          src={nossaLojaVideo.url}
+          className="mx-auto block max-h-[70vh] w-full"
+          loop
+          playsInline
+          onPlay={() => setIsPlaying(true)}
+          onPause={() => setIsPlaying(false)}
+          aria-label="Vídeo da nossa loja"
+        />
+        {(!isPlaying || mutedStart) && (
+          <button
+            onClick={togglePlay}
+            aria-label={isPlaying ? "Ativar som do vídeo" : "Reproduzir vídeo"}
+            className={
+              mutedStart && isPlaying
+                ? "absolute bottom-3 left-1/2 flex -translate-x-1/2 items-center gap-2 rounded-full bg-player-foreground/90 px-4 py-2 text-xs font-extrabold text-player"
+                : "absolute inset-0 grid place-items-center bg-player/45"
+            }
+          >
+            {mutedStart && isPlaying ? (
+              <>
+                <Volume2 className="size-4" /> ATIVAR SOM
+              </>
+            ) : (
+              <span className="grid size-16 place-items-center rounded-full bg-card text-foreground shadow-lg">
+                <Play className="size-7 fill-current" />
+              </span>
+            )}
+          </button>
+        )}
+      </div>
+    </div>
+  );
+}
+
 function ProductDetails({ palette, setPalette }: { palette: PaletteName; setPalette: (palette: PaletteName) => void }) {
   return (
     <section id="comprar" className="min-w-0">
@@ -307,6 +375,7 @@ function Index() {
           <h2 className="section-title text-center">Feitas para transformar seu banho</h2>
            <div className="mt-9 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
              <img src="/images/toalha-copy-1.webp" alt="Destaque das toalhas Serena 1" className="aspect-[2/3] w-full rounded-lg object-cover shadow-product" />
+             <NossaLojaPlayer />
              <video src={gifCopy.url} className="aspect-[16/9] w-full rounded-lg object-cover shadow-product sm:col-span-2 lg:col-span-4" autoPlay muted loop playsInline aria-label="Demonstração das toalhas Serena" />
              {[2, 3, 4].map((number) => <img key={number} src={`/images/toalha-copy-${number}.webp`} alt={`Destaque das toalhas Serena ${number}`} className="aspect-[2/3] w-full rounded-lg object-cover shadow-product" />)}
           </div>
