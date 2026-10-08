@@ -278,7 +278,7 @@ function NossaLojaPlayer() {
             </span>
           </button>
         )}
-        {isPlaying && !mutedStart && (
+        {isPlaying && (
           <button
             onClick={togglePlay}
             aria-label="Pausar vídeo"
