@@ -267,7 +267,7 @@ function NossaLojaPlayer() {
             <Volume2 className="size-4" /> ATIVAR SOM
           </button>
         )}
-        {!isPlaying && !mutedStart && (
+        {!isPlaying && (
           <button
             onClick={togglePlay}
             aria-label="Reproduzir vídeo"
