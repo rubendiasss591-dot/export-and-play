@@ -8,6 +8,7 @@ import {
   Gift,
   LockKeyhole,
   PackageCheck,
+  Pause,
   Play,
   ShieldCheck,
   Sparkles,
@@ -244,32 +245,46 @@ function NossaLojaPlayer() {
         <video
           ref={videoRef}
           src={nossaLojaVideo.url}
-          className="mx-auto block max-h-[70vh] w-full"
+          className="mx-auto block max-h-[70vh] w-full cursor-pointer"
           loop
           playsInline
+          onClick={togglePlay}
           onPlay={() => setIsPlaying(true)}
           onPause={() => setIsPlaying(false)}
           aria-label="Vídeo da nossa loja"
         />
-        {(!isPlaying || mutedStart) && (
+        {mutedStart && isPlaying && (
+          <button
+            onClick={() => {
+              const video = videoRef.current;
+              if (!video) return;
+              video.muted = false;
+              setMutedStart(false);
+            }}
+            aria-label="Ativar som do vídeo"
+            className="absolute bottom-3 left-1/2 flex -translate-x-1/2 items-center gap-2 rounded-full bg-player-foreground/90 px-4 py-2 text-xs font-extrabold text-player"
+          >
+            <Volume2 className="size-4" /> ATIVAR SOM
+          </button>
+        )}
+        {!isPlaying && !mutedStart && (
           <button
             onClick={togglePlay}
-            aria-label={isPlaying ? "Ativar som do vídeo" : "Reproduzir vídeo"}
-            className={
-              mutedStart && isPlaying
-                ? "absolute bottom-3 left-1/2 flex -translate-x-1/2 items-center gap-2 rounded-full bg-player-foreground/90 px-4 py-2 text-xs font-extrabold text-player"
-                : "absolute inset-0 grid place-items-center bg-player/45"
-            }
+            aria-label="Reproduzir vídeo"
+            className="absolute inset-0 grid place-items-center bg-player/45"
           >
-            {mutedStart && isPlaying ? (
-              <>
-                <Volume2 className="size-4" /> ATIVAR SOM
-              </>
-            ) : (
-              <span className="grid size-16 place-items-center rounded-full bg-card text-foreground shadow-lg">
-                <Play className="size-7 fill-current" />
-              </span>
-            )}
+            <span className="grid size-16 place-items-center rounded-full bg-card text-foreground shadow-lg">
+              <Play className="size-7 fill-current" />
+            </span>
+          </button>
+        )}
+        {isPlaying && !mutedStart && (
+          <button
+            onClick={togglePlay}
+            aria-label="Pausar vídeo"
+            className="absolute bottom-3 right-3 grid size-10 place-items-center rounded-full bg-player-foreground/90 text-player opacity-80 transition hover:opacity-100"
+          >
+            <Pause className="size-5 fill-current" />
           </button>
         )}
       </div>
