@@ -46,6 +46,9 @@
   --color-final: var(--final);
   --color-final-foreground: var(--final-foreground);
   --color-final-muted: var(--final-muted);
+  --color-player: var(--player);
+  --color-player-foreground: var(--player-foreground);
+  --color-player-muted: var(--player-muted);
   --shadow-product: var(--shadow-product);
   --shadow-buy: var(--shadow-buy);
 }

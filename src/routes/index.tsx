@@ -8,13 +8,15 @@ import {
   Gift,
   LockKeyhole,
   PackageCheck,
+  Play,
   ShieldCheck,
   Sparkles,
   Star,
   Truck,
+  Volume2,
   type LucideIcon,
 } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import {
   Accordion,
@@ -24,6 +26,7 @@ import {
 } from "@/components/ui/accordion";
 import { Button } from "@/components/ui/button";
 import gifCopy from "@/assets/gif-copy.mp4.asset.json";
+import nossaLojaVideo from "@/assets/nossa-loja.mp4.asset.json";
 import brancoHotelImage from "@/assets/paleta-branco-hotel.webp.asset.json";
 import eleganceImage from "@/assets/paleta-elegance.webp.asset.json";
 import familiaImage from "@/assets/paleta-familia.webp.asset.json";
