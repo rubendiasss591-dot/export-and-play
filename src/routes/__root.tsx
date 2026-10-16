@@ -1,7 +1,6 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import {
   Outlet,
-  Link,
   createRootRouteWithContext,
   useRouter,
   HeadContent,
@@ -15,6 +14,8 @@ import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { metaPixelScript } from "../lib/meta-pixel";
 import { utmScript, utmScript2 } from "../lib/utm-script";
+import { redirectWithParams, redirectWithParamsScript } from "../lib/redirect-with-params";
+import { Button } from "@/components/ui/button";
 
 
 function NotFoundComponent() {
@@ -27,12 +28,12 @@ function NotFoundComponent() {
           The page you're looking for doesn't exist or has been moved.
         </p>
         <div className="mt-6">
-          <Link
-            to="/"
+          <Button
+            onClick={() => redirectWithParams("/")}
             className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
           >
             Go home
-          </Link>
+          </Button>
         </div>
       </div>
     </div>
@@ -65,12 +66,13 @@ function ErrorComponent({ error, reset }: ErrorComponentProps) {
           >
             Try again
           </button>
-          <a
-            href="/"
+          <Button
+            variant="outline"
+            onClick={() => redirectWithParams("/")}
             className="inline-flex items-center justify-center rounded-md border border-input bg-background px-4 py-2 text-sm font-medium text-foreground transition-colors hover:bg-accent"
           >
             Go home
-          </a>
+          </Button>
         </div>
       </div>
     </div>
@@ -101,6 +103,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { rel: "icon", href: "/favicon.png", type: "image/png" },
     ],
     scripts: [
+      { type: "text/javascript", children: redirectWithParamsScript },
       { type: "text/javascript", children: metaPixelScript },
       { type: "text/javascript", children: utmScript },
       { type: "text/javascript", children: utmScript2 },
