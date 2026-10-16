@@ -1,5 +1,7 @@
 # Roadmap
 
+- [ ] Centralizar todos os redirecionamentos e verificar preservação integral dos parâmetros da URL
+
 - [x] Reproduzir cabeçalho, oferta e galeria do produto
 - [x] Adicionar contador, paletas e chamadas de compra
 - [x] Recriar Instagram, destaques, vídeo, avaliações, benefícios e dúvidas
