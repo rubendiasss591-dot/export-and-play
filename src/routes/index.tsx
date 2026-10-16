@@ -33,6 +33,7 @@ import eleganceImage from "@/assets/paleta-elegance.webp.asset.json";
 import familiaImage from "@/assets/paleta-familia.webp.asset.json";
 import urbanImage from "@/assets/paleta-urban.webp.asset.json";
 import { trackInitiateCheckout } from "@/lib/meta-pixel";
+import { redirectWithParams } from "@/lib/redirect-with-params";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -161,7 +162,7 @@ function BuyButton({ checkout, className = "" }: { checkout: string; className?:
       className={`buy-pulse h-14 w-full rounded-md bg-buy text-base font-extrabold text-buy-foreground shadow-buy hover:bg-buy-hover ${className}`}
       onClick={() => {
         trackInitiateCheckout();
-        window.location.assign(checkout);
+        redirectWithParams(checkout);
       }}
     >
       COMPRAR AGORA <ChevronRight className="size-5" />
