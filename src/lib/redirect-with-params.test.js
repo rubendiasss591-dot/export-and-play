@@ -8,7 +8,7 @@ afterEach(() => {
   else Reflect.deleteProperty(globalThis, "window");
 });
 
-function redirect(search: string, destination: string) {
+function redirect(search, destination) {
   const location = { search, href: "" };
   Object.defineProperty(globalThis, "window", { configurable: true, value: { location } });
   redirectWithParams(destination);
